@@ -16,31 +16,27 @@
         <label for="identificacion" class="form-label">Identificacón</label>
         <input type="text" class="form-control" id="identificacion" formControlName="identificacion">
       </div>
-      <div class="mb-3">
-        <label for="precio" class="form-label">Precio</label>
-        <input type="number" class="form-control" id="precio" formControlName="precio" (input)="onChangePrice($event)">
-      </div>
-      <div id="modalPaybox"></div>
-      <button 
-              id="pay" 
-              type="submit" 
-              style="
-                  display: none;
-                  background-color: #FAFAFA;
-                  right: 80px;
-                  background: url(https://sandbox-paybox.pagoplux.com/img/pagar.png?v1)
-                  no-repeat center center !important;
-                  height: 96px;
-                  width: 215px;
-                  border: none;
-                  cursor: pointer;
-                  background-size: contain !important;
-                  outline: 0;"
-                  (click)="onPayButtonClick($event)"
-        >
-  </button>
       
     </form>
+    <div id="modalPaybox"></div>
+    <button 
+            id="pay" 
+            type="submit" 
+            style="
+                display: none;
+                background-color: #FAFAFA;
+                right: 80px;
+                background: url(https://sandbox-paybox.pagoplux.com/img/pagar.png?v1)
+                no-repeat center center !important;
+                height: 96px;
+                width: 215px;
+                border: none;
+                cursor: pointer;
+                background-size: contain !important;
+                outline: 0;"
+                (click)="onPayButtonClick($event)"
+      >
+</button>
     
 
 

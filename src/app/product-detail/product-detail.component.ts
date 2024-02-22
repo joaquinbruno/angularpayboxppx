@@ -9,12 +9,14 @@ import { IProducto } from '../models/product.model';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
+
+ 
  constructor(
    private _route: ActivatedRoute,
    private _apiService: ApiServiceService
  ){}
 
- product?: IProducto
+ product?: IProducto;
  productList: IProducto[] = []
 
 
