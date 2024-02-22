@@ -2,19 +2,27 @@
   <form [formGroup]="formularioContacto"  >
       <div class="mb-3">
         <label for="name" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="name" formControlName="nombre">
+        <input [ngClass]="{'is-invalid': hasErrors('nombre', 'required' || hasErrors('nombre', 'minlength'))}" type="text" class="form-control" id="name" formControlName="nombre">
+        <div *ngIf="hasErrors('nombre', 'required')" class="text-danger"> Nombre Requerido </div>
+        <div *ngIf="hasErrors('nombre', 'minlength')" class="text-danger"> Nombre requiere mínimo 3 caracteres </div>
       </div>
       <div class="mb-3">
         <label for="name" class="form-label">Apellido</label>
-        <input type="text" class="form-control" id="apellido" formControlName="apellido">
+        <input [ngClass]="{'is-invalid': hasErrors('apellido', 'required' || hasErrors('apellido', 'minlength'))}"type="text" class="form-control" id="apellido" formControlName="apellido">
+        <div *ngIf="hasErrors('apellido', 'required')" class="text-danger"> Apellido Requerido </div>
+        <div *ngIf="hasErrors('apellido', 'minlength')" class="text-danger"> Apellido requiere mínimo 3 caracteres </div>
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" formControlName="email">
+        <input [ngClass]="{'is-invalid': hasErrors('email', 'required') || hasErrors('email', 'email')}" type="email" class="form-control" id="email" formControlName="email">
+        <div *ngIf="hasErrors('email', 'email')" class="text-danger"> Email formato invalido </div>
+        <div *ngIf="hasErrors('email', 'required')" class="text-danger"> Email requerido </div>
       </div>
       <div class="mb-3">
         <label for="identificacion" class="form-label">Identificacón</label>
-        <input type="text" class="form-control" id="identificacion" formControlName="identificacion">
+        <input [ngClass]="{'is-invalid': hasErrors('identificacion', 'required' || hasErrors('identificacion', 'minlength'))}" type="text" class="form-control" id="identificacion" formControlName="identificacion">
+        <div *ngIf="hasErrors('identificacion', 'required')" class="text-danger"> Identificacón Requerido </div>
+        <div *ngIf="hasErrors('identificacion', 'minlength')" class="text-danger"> Identificacón requiere mínimo 3 caracteres </div>
       </div>
       
     </form>

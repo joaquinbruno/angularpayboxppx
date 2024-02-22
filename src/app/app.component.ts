@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {  Component } from '@angular/core';
 
 
 
@@ -9,14 +9,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent      {
-  title = 'payboxPagoPlux';
+  title = 'Implementación botón de pagoplux en Angular';
 
-
-
-  
-
-    
-
-    
 
   }

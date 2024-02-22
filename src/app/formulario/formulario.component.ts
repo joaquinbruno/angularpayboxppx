@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PAYBOX_CONFIG } from '../data/data';
 declare var iniciarDatos:any;
 declare var reload:any;
 
@@ -19,62 +19,17 @@ export class FormularioComponent implements OnInit, AfterViewInit  {
   email: string = '';
   identificacion: string = '';
   precio: string = '';
-
+  data = PAYBOX_CONFIG
+  
   constructor( private form: FormBuilder ){
     this.formularioContacto = this.form.group({
-      nombre: [''],
-      apellido: [''],
-      email: [''],
-      identificacion: [''],
-      precio: [''],
+      nombre: ['', [Validators.required, Validators.minLength(3)] ],
+      apellido: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email] ],
+      identificacion: ['', [Validators.required, Validators.minLength(3)]],
     })
   }
   
-  data = {
-   
-    PayboxRemail: "equipopagoplux@gmail.com",
-    
-    PayboxSendmail: "",
-    
-    PayboxRename: "UsuarioNombre",
-    
-    PayboxSendname: "UsuarioApellido",
-    
-    PayboxBase0: "10",
-   
-    PayboxBase12: "",
-   
-    PayboxDescription: "",
-    
-    PayboxProduction: false,
-  
-    PayboxEnvironment: "sandbox",
-    
-    PayboxLanguage: "es",
-   
-    PayboxPagoPlux: true,
-    
-    PayboxDirection: "string",
-   
-    PayBoxClientPhone: "número telefónico del tarjetahabiente",
-    
-    PayBoxClientName: 'string',
-
-    PayBoxClientIdentification: 'Identificacion de cliente',
-  
-    PayboxRecurrent: false,
-    
-    planId: true,
-   
-    PayboxPermitirCalendarizar: false,
-   
-    PayboxPagoInmediato: true,
-   
-    PayboxCobroPrueba: false,
-   
-    consumptionCode: 'string'
-    };
-
     ngOnInit(): void {
         iniciarDatos(this.data);
         this.data.PayboxBase0 = this.productFromDetail?.price;
@@ -93,6 +48,10 @@ export class FormularioComponent implements OnInit, AfterViewInit  {
       this.data.PayboxSendmail = this.formularioContacto.get('email')?.value;
       this.data.PayBoxClientIdentification = this.formularioContacto.get('identificacion')?.value;
 
+    }
+
+    hasErrors(controlName:string, errortype: string){
+      return this.formularioContacto.get(controlName)?.hasError(errortype) && this.formularioContacto.get(controlName)?.touched;
     }
 
     }
