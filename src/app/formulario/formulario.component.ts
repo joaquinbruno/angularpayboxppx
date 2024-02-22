@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-// @ts-ignore
+import { FormBuilder, FormGroup } from '@angular/forms';
+
 
 declare var iniciarDatos:any;
 declare var reload:any;
@@ -13,7 +14,22 @@ declare var reload:any;
 })
 export class FormularioComponent implements OnInit, AfterViewInit  {
 
-  constructor(){}
+  formularioContacto: FormGroup;
+  nombre: string = '';
+  apellido: string = '';
+  email: string = '';
+  identificacion: string = '';
+  precio: string = '';
+
+  constructor( private form: FormBuilder ){
+    this.formularioContacto = this.form.group({
+      nombre: [''],
+      apellido: [''],
+      email: [''],
+      identificacion: [''],
+      precio: [''],
+    })
+  }
   
   data = {
    
@@ -21,7 +37,7 @@ export class FormularioComponent implements OnInit, AfterViewInit  {
     
     PayboxSendmail: "",
     
-    PayboxRename: "UsuarioNombre ",
+    PayboxRename: "UsuarioNombre",
     
     PayboxSendname: "UsuarioApellido",
     
@@ -62,11 +78,29 @@ export class FormularioComponent implements OnInit, AfterViewInit  {
 
     ngOnInit(): void {
         iniciarDatos(this.data);
+        console.log(this.formularioContacto)
     }
 
     ngAfterViewInit() {
         reload(this.data);
     }
+
+    onChangePrice(event: any){
+      const valueInput = event.target.value;
+      this.data.PayboxBase0 = valueInput;
+    }
+
     
 
-}
+    onPayButtonClick(event: Event){
+      event.preventDefault();
+      const nombre  = this.formularioContacto.get('nombre')?.value;
+      const apellido = this.formularioContacto.get('apellido')?.value;
+      this.data.PayboxSendname = `${nombre} ${apellido}`;
+      this.data.PayboxSendmail = this.formularioContacto.get('email')?.value;
+      this.data.PayBoxClientIdentification = this.formularioContacto.get('identificacion')?.value;
+      this.data.PayboxBase0 = this.formularioContacto.get('precio')?.value;
+      console.log(this.data.PayboxSendname)
+    }
+
+    }
