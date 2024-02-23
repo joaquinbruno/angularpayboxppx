@@ -26,7 +26,7 @@ export class ProductDetailComponent implements OnInit {
        this._apiService.getProductById(Number(params['productId'])).subscribe({
            next: (data: any) => {
             this.product = data; 
-            console.log(this.product)
+           
            },
            error: (error: any)=>{
             console.log(error)

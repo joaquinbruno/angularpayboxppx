@@ -25,9 +25,11 @@
         <div *ngIf="hasErrors('identificacion', 'minlength')" class="text-danger"> Identificacón requiere mínimo 3 caracteres </div>
       </div>
       
+      
     </form>
     <div id="modalPaybox"></div>
     <button 
+            [disabled]="!formularioContacto.valid"
             id="pay" 
             type="submit" 
             style="
@@ -45,6 +47,7 @@
                 (click)="onPayButtonClick($event)"
       >
 </button>
+<div *ngIf="!formularioContacto.valid"  class="text-danger"> Completa los datos </div>
     
 
 

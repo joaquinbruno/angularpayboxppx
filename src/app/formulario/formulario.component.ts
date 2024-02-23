@@ -47,6 +47,7 @@ export class FormularioComponent implements OnInit, AfterViewInit  {
       this.data.PayboxSendname = `${nombre} ${apellido}`;
       this.data.PayboxSendmail = this.formularioContacto.get('email')?.value;
       this.data.PayBoxClientIdentification = this.formularioContacto.get('identificacion')?.value;
+      
 
     }
 
